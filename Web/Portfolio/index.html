@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY PORTFOLIO</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/ecebdab2c1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+<div id="header">
+    <div class="container">
+        <nav>
+            <img src="picture/JB.png" class="logo" alt="">
+            <ul id="sidemenu">
+                <li><a href="#header">HOME</a></li>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#services">SERVICES</a></li>
+                <li><a href="#contact">CONTACTS</a></li>
+                <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
+            </ul>
+            <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+        </nav>
+        <div class="header-text">
+            <p>WEB DEVELOPER, FRONT-END DEVELOPER</p>
+            <h1>Hi, I'm <span>Alvin</span><br>From Kenya</h1>
+        </div>
+    </div>
+</div>
+<div id="about">
+    <div class="container">
+        <div class="row">
+            <div class="about-col-1">
+                <img src="picture/profile.png" width="450" height="100" alt="">
+            </div>
+            <div class="about-col-2">
+                <h1 class="sub-title">About Me</h1>
+                <p>I'm a passionate web developer & problem solver with a love for building efficient, scalable, and innovative solutions. 
+                    With expertise in [Programming Languages: e.g., Python, JavaScript, HTML], I specialize in web development, and frontend development.
+                    I'm always excited to take on new challenges. I thrive on turning ideas into reality through clean, maintainable, and well-documented code.
+                </p>
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('skills')">SKILLS</p>
+                    <p class="tab-links" onclick="opentab('education')">EDUCATION</p>
+                </div>
+                <div class="tab-contents active-tab" id="skills">
+                    <ul>
+                        <li><span>WEB DEVELOPMENT</span><br>Creating Web apps/sites</li>
+                        <li><span>FRONT-END DEVELOPMENT</span><br>Web user-interface</li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="education">
+                    <ul>
+                        <li><span>2024 - CURRENT</span><br>BACHELOR OF BUSINESS INFORMATION TECHNOLOGY AT KIRINYAGA UNIVERSITY</li>
+                        <li><span>2020 - 2023</span><br>HIGH SCHOOL DEGREE AT KANJURI BOYS HIGH SCHOOL</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="services">
+    <div class="container">
+            <h1 class="sub-title">My Services</h1>
+            <div class="services-list">
+                <div>
+                    <i class="fa-solid fa-code"></i>
+                    <h2>WEB DEVELOPMENT</h2>
+                    <p>I create web applications and websites fit for your requirements and easy to navigate for the users.
+                    The web apps and sites are created in detail following the guidelines and expectations you provide, the main goal being bringing your idea to life.</p>
+                    <a href="#">Learn more</a>
+                </div>
+                <div>
+                    <i class="fa-solid fa-crop"></i>
+                    <h2>FRONT-END DEVELOPMENT</h2>
+                    <p>Developing a User-interface for web applications targeted to be scalable, navigatable and enhance visual impact.</p>
+                    <a href="#">Learn more</a>
+                </div>
+
+            </div>
+    </div>
+</div>
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title">Contact Me</h1>
+                <p><i class="fa-solid fa-paper-plane"></i> 444mwangialvinm@gmail.com</p>
+                <p><i class="fa-solid fa-phone"></i> +254797237149</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.whatsapp.com"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://mail.google.com/#compose"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://www.linkedin.com"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="contact-right">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your name" required>
+                    <input type="email" name="Email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+                <span id="msg"></span>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>Copyright ©Alvin</p>
+    </div>
+</div>
+<script>
+
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+    function opentab(tabname){
+        for(tablink of tablinks){
+            tablink.classList.remove("active-link");
+        }
+        for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+
+</script>
+
+<script>
+
+    var sidemenu = document.getElementById("sidemenu");
+
+    function openmenu(){
+        sidemenu.style.right = "0";
+    }
+    function closemenu(){
+        sidemenu.style.right = "-200px"
+    }
+</script>
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbylHL72UJkXtvT6RC7W0RecSCYf_x8rpZJMlu342ejnJq9IW9O6bFHSKH72dBnmShg3/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML = "Message sent successfully"
+            setTimeout(function(){
+                msg.innerHTML = ""
+            },5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+    </script>
+
+</body>
+</html>
