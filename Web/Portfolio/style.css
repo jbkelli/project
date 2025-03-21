@@ -239,6 +239,11 @@ form button{
     margin-top: 20px;
     cursor: pointer;
     border-radius: 10px;
+    transition: transform 0.5s;
+}
+form button:hover{
+    background: aqua;
+    transform: translateY(-5px);
 }
 .copyright{
     width: 100%;
