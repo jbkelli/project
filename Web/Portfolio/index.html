@@ -14,13 +14,14 @@
     <div class="container">
         <nav>
             <img src="picture/JB.png" class="logo" alt="">
+            
             <ul id="sidemenu">
-                <li><a href="#header">HOME</a></li>
-                <li><a href="#about">ABOUT</a></li>
-                <li><a href="#services">SERVICES</a></li>
-                <li><a href="#contact">CONTACTS</a></li>
+                <li><a href="#header" onclick="closemenu()">HOME</a></li>
+                <li><a href="#about" onclick="closemenu()">ABOUT</a></li>
+                <li><a href="#services" onclick="closemenu()">SERVICES</a></li>
+                <li><a href="#contact" onclick="closemenu()">CONTACTS</a></li>
                 <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
-            </ul>
+            </ul> 
             <i class="fa-solid fa-bars" onclick="openmenu()"></i>
         </nav>
         <div class="header-text">
@@ -142,8 +143,11 @@
         sidemenu.style.right = "0";
     }
     function closemenu(){
-        sidemenu.style.right = "-200px"
+        sidemenu.style.right = "-200px";
     }
+    document.querySelectorAll("#sidemenu a").forEach(item => {
+        item.addEventListener("click", closemenu);
+    });
 </script>
 
 <script>
