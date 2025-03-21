@@ -10,6 +10,7 @@ html{
 body{
     background: #080808;
     color: #000000;
+    background-image: url(picture/peide.png);
 
 }
 #header{
@@ -64,13 +65,13 @@ nav ul li a:hover::after{
     width: 100%;
 }
 .header-text{
-    margin-top: 20%;
+    margin-top: 10%;
     font-size: 30px;
     color: #fff;
 }
 .header-text h1{
     font-size: 60px;
-    margin-top: 20px;
+    margin-top: 10px;
     color: #fff;
 }
 .header-text span{
@@ -261,7 +262,7 @@ nav .fa-solid{
         background-image: url(picture/peide.png);
     }
     .header-text{
-        margin-top: 100%;
+        margin-top: 70%;
         font-size: 16px;
     }
     .header-text h1{
