@@ -261,9 +261,14 @@ nav .fa-solid{
     #header{
         background-image: url(picture/peide.png);
     }
-    .header-text{
-        margin-top: 70%;
-        font-size: 16px;
+    .header-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        width: 100%;
+        padding: 0 20px;
     }
     .header-text h1{
         font-size: 30px;
