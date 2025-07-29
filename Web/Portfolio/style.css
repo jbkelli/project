@@ -10,19 +10,62 @@ html{
 body{
     background: #080808;
     color: #000000;
-    background-image: url(picture/peide.png);
-
+    /* overflow: hidden; */
 }
+
+/* Loading Animation */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #080808;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.loading.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #333;
+    border-top: 3px solid #05c6bf;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 #header{
     width: 100%;
-    height: 100vh;
-    background-image: url(picture/peide.png);
+    height: 70vh;
     background-size: cover;
     background-position: center;
 }
 .container{
     padding: 10px 10%;
 
+}
+#matrixCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Behind other content */
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-image: black;
 }
 nav{
     display: flex;
@@ -151,8 +194,8 @@ nav ul li a:hover::after{
 }
 .services-list{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    grid-gap: 80px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 40px;
     margin-top: 50px;
 }
 .services-list div{
@@ -160,31 +203,150 @@ nav ul li a:hover::after{
     font-size: 15px;
     font-weight: 300;
     border-radius: 8px;
-    padding-left: 15px;
+    padding: 20px 15px;
     transition: transform 0.5s;
-
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
 }
 .services-list div i{
     font-size: 50px;
-    margin-bottom: 30px;
-
+    margin-bottom: 20px;
+    color: #05c6bf;
 }
 .services-list div h2{
-    font-size: 30px;
+    font-size: 24px;
     font-weight: 500;
-    margin-bottom: 8px;
+    margin-bottom: 15px;
+    color: #fff;
 }
-.services-list div a{
-    text-decoration: wavy;
-    color: white;
-    font-size: 20px;
-    margin-top: 10px;
-    display: flex;
+.services-list div p{
+    flex-grow: 1;
+    line-height: 1.6;
 }
 .services-list div:hover{
     background: #2405ad;
     transform: translateY(-10px);
 }
+
+/* Interests Section Styles */
+#interests{
+    color: rgba(14, 215, 108, 0.548);
+    padding: 30px 0;
+}
+.interests-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 30px;
+    margin-top: 50px;
+}
+.interest-item{
+    background: linear-gradient(rgb(3, 52, 55), rgb(22, 18, 19));
+    padding: 30px 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.5s, background 0.5s;
+    border: 2px solid transparent;
+}
+.interest-item:hover{
+    background: linear-gradient(rgb(5, 70, 75), rgb(30, 25, 26));
+    transform: translateY(-8px);
+    border-color: #05c6bf;
+}
+.interest-item i{
+    font-size: 40px;
+    color: #05c6bf;
+    margin-bottom: 20px;
+}
+.interest-item h3{
+    font-size: 22px;
+    color: #fff;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.interest-item p{
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Projects Section Styles */
+#myProjects{
+    padding: 30px 0;
+    color: rgba(14, 215, 108, 0.548);
+}
+.projects-content{
+    margin-top: 50px;
+}
+.projects-description{
+    text-align: center;
+    margin-bottom: 40px;
+}
+.projects-description p{
+    font-size: 18px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 800px;
+    margin: 0 auto;
+}
+.github-section{
+    display: flex;
+    justify-content: center;
+}
+.github-card{
+    background: linear-gradient(135deg, rgb(3, 52, 55), rgb(22, 18, 19));
+    padding: 40px 30px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    border: 2px solid #05c6bf;
+    transition: transform 0.5s, box-shadow 0.5s;
+}
+.github-card:hover{
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(5, 198, 191, 0.3);
+}
+.github-card i{
+    font-size: 60px;
+    color: #05c6bf;
+    margin-bottom: 20px;
+}
+.github-card h3{
+    font-size: 28px;
+    color: #fff;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+.github-card p{
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 30px;
+}
+.github-btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #ff004f;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid #ff004f;
+}
+.github-btn:hover{
+    background: transparent;
+    color: #ff004f;
+    transform: scale(1.05);
+}
+.github-btn i{
+    font-size: 20px;
+}
+
 .contact-left{
     flex-basis: 35%;
     color: #05c6bf;
@@ -194,7 +356,14 @@ nav ul li a:hover::after{
 }
 .contact-left p{
     margin-top: 30px;
-
+}
+.contact-left p a{
+    color: #05c6bf;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.contact-left p a:hover{
+    color: #ff004f;
 }
 .contact-left p i{
     color: #ff004f;
@@ -260,7 +429,9 @@ nav .fa-solid{
 @media only screen and (max-width: 600px){
     #header{
         background-image: url(picture/peide.png);
+        height: 100vh;
     }
+
     .header-text {
         position: absolute;
         top: 50%;
@@ -272,6 +443,9 @@ nav .fa-solid{
     }
     .header-text h1{
         font-size: 30px;
+    }
+    .header-text p{
+        font-size: 14px;
     }
     nav .fa-solid{
         display: block;
@@ -308,6 +482,10 @@ nav .fa-solid{
     .about-col-1{
         margin-bottom: 30px;
     }
+    .about-col-1 img{
+        width: 100%;
+        height: auto;
+    }
     .about-col-2{
         font-size: 14px;
     }
@@ -315,11 +493,89 @@ nav .fa-solid{
         font-size: 16px;
         margin-right: 20px;
     }
+    
+    /* Services Section Mobile */
+    .services-list{
+        grid-template-columns: 1fr;
+        grid-gap: 20px;
+    }
+    .services-list div{
+        padding: 25px 20px;
+        min-height: 250px;
+    }
+    .services-list div h2{
+        font-size: 20px;
+    }
+    .services-list div p{
+        font-size: 14px;
+    }
+    
+    /* Interests Section Mobile */
+    .interests-list{
+        grid-template-columns: 1fr;
+        grid-gap: 20px;
+    }
+    .interest-item{
+        padding: 20px 15px;
+    }
+    .interest-item h3{
+        font-size: 20px;
+    }
+    .interest-item p{
+        font-size: 13px;
+    }
+    
+    /* Projects Section Mobile */
+    .github-card{
+        padding: 30px 20px;
+        margin: 0 20px;
+    }
+    .github-card h3{
+        font-size: 24px;
+    }
+    .github-card p{
+        font-size: 14px;
+    }
+    .github-btn{
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+    .projects-description p{
+        font-size: 16px;
+        padding: 0 20px;
+    }
+    
+    /* Contact Section Mobile */
     .contact-left, .contact-right{
         flex-basis: 100%;
     }
+    .contact-left{
+        margin-bottom: 30px;
+    }
+    .social-icons a{
+        margin-right: 20px;
+        font-size: 24px;
+    }
+    form input, form textarea{
+        font-size: 16px;
+        padding: 12px;
+    }
+    form button{
+        padding: 12px 40px;
+        font-size: 16px;
+    }
+    
+    /* General Mobile Improvements */
+    .container{
+        padding: 10px 5%;
+    }
     .copyright{
         font-size: 14px;
+    }
+    
+    /* Matrix Canvas Mobile */
+    #matrixCanvas{
+        opacity: 0.3;
     }
 }
 #msg{

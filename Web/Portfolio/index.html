@@ -3,44 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PORTFOLIO</title>
+    <meta name="description" content="Alvin Maina - Web Developer & Mobile App Developer from Kenya. Specializing in React Native, JavaScript, Python, and modern web technologies.">
+    <meta name="keywords" content="Web Developer, Mobile Developer, React Native, JavaScript, Python, Portfolio, Kenya, Alvin Maina">
+    <meta name="author" content="Alvin Maina">
+    <meta property="og:title" content="Alvin Maina - Web & Mobile Developer">
+    <meta property="og:description" content="Passionate web & mobile developer creating efficient, scalable solutions. Check out my portfolio!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://github.com/jbkelli">
+    <title>Alvin Maina - Web & Mobile Developer Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="picture/angr.png">
     <script src="https://kit.fontawesome.com/ecebdab2c1.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 </head>
 <body>
-<div id="header">
+<!-- Loading Screen -->
+<div class="loading" id="loading">
+    <div class="spinner"></div>
+</div>
+
+<header id="header">
     <div class="container">
         <nav>
-            <img src="picture/JB.png" class="logo" alt="">
+            <img src="picture/JB.png" class="logo" alt="Alvin Maina Logo">
             
             <ul id="sidemenu">
                 <li><a href="#header" onclick="closemenu()">HOME</a></li>
                 <li><a href="#about" onclick="closemenu()">ABOUT</a></li>
                 <li><a href="#services" onclick="closemenu()">SERVICES</a></li>
+                <li><a href="#interests" onclick="closemenu()">INTERESTS</a></li>
+                <li><a href="#myProjects" onclick="closemenu()">PROJECTS</a></li>
                 <li><a href="#contact" onclick="closemenu()">CONTACTS</a></li>
                 <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
             </ul> 
             <i class="fa-solid fa-bars" onclick="openmenu()"></i>
         </nav>
-        <div class="header-text">
-            <p>WEB DEVELOPER, FRONT-END DEVELOPER</p>
+        <section class="header-text">
             <h1>Hi, I'm <span>Alvin</span><br>From Kenya</h1>
-        </div>
+            <p>WEB DEVELOPER, MOBILE DEVELOPER</p>
+        </section>
     </div>
-</div>
-<div id="about">
+</header>
+<section id="about">
     <div class="container">
         <div class="row">
             <div class="about-col-1">
-                <img src="picture/profile.png" width="450" height="100" alt="">
+                <img src="picture/profile.png" width="450" height="100" alt="Alvin Maina Profile Picture">
             </div>
             <div class="about-col-2">
                 <h1 class="sub-title">About Me</h1>
                 <p>I'm a passionate web developer & problem solver with a love for building efficient, scalable, and innovative solutions. 
-                    With expertise in [Programming Languages: e.g., Python, JavaScript, HTML], I specialize in web development, and frontend development.
-                    I'm always excited to take on new challenges. I thrive on turning ideas into reality through clean, maintainable, and well-documented code.
+                    With expertise in Python, JavaScript, HTML & CSS, React Native, Dart & Flutter, I specialize in web development and frontend development.
+                    <br> I'm always excited to take on new challenges. I thrive on turning ideas into reality through clean, maintainable, and well-documented code.
                 </p>
                 <div class="tab-titles">
                     <p class="tab-links active-link" onclick="opentab('skills')">SKILLS</p>
@@ -50,19 +66,21 @@
                     <ul>
                         <li><span>WEB DEVELOPMENT</span><br>Creating Web apps/sites</li>
                         <li><span>FRONT-END DEVELOPMENT</span><br>Web user-interface</li>
+                        <li><span>MOBILE DEVELOPMENT</span><br>Creating mobile applications</li>
                     </ul>
                 </div>
                 <div class="tab-contents" id="education">
                     <ul>
+                        <li><span>2024 - CURRENT</span><br>POWER LEARN PROJECT ACADEMY</li>
                         <li><span>2024 - CURRENT</span><br>BACHELOR OF BUSINESS INFORMATION TECHNOLOGY AT KIRINYAGA UNIVERSITY</li>
-                        <li><span>2020 - 2023</span><br>HIGH SCHOOL DEGREE AT KANJURI BOYS HIGH SCHOOL</li>
+                        <li><span>2020 - 2023</span><br>HIGH SCHOOL CERTIFICATE AT KANJURI BOYS HIGH SCHOOL</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div id="services">
+</section>
+<section id="services">
     <div class="container">
             <h1 class="sub-title">My Services</h1>
             <div class="services-list">
@@ -71,44 +89,94 @@
                     <h2>WEB DEVELOPMENT</h2>
                     <p>I create web applications and websites fit for your requirements and easy to navigate for the users.
                     The web apps and sites are created in detail following the guidelines and expectations you provide, the main goal being bringing your idea to life.</p>
-                    <a href="#">Learn more</a>
                 </div>
                 <div>
                     <i class="fa-solid fa-crop"></i>
                     <h2>FRONT-END DEVELOPMENT</h2>
                     <p>Developing a User-interface for web applications targeted to be scalable, navigatable and enhance visual impact.</p>
-                    <a href="#">Learn more</a>
                 </div>
                 <div>
                     <i class="fa-solid fa-pen-fancy"></i>
                     <h2>WEB DESIGN</h2>
                     <p>I craft innovative web applications that blend aesthetics with functionality, ensuring intuitive user experiences, scalability, and efficiency. Whether it's an interactive dashboard, an e-commerce platform, or a dynamic business tool, I turn concepts into reality.</p>
-                    <a href="#">Learn more</a>
+                </div>
+                <div>
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                    <h2>MOBILE APP DEVELOPMENT</h2>
+                    <p>Building cross-platform mobile applications using React Native, delivering native performance with efficient code sharing. From concept to deployment, I create engaging mobile experiences for both iOS and Android platforms.</p>
                 </div>
 
             </div>
     </div>
-</div>
-<div id="contact">
+</section>
+<section id="interests">
+    <div class="container">
+        <h1 class="sub-title">My Interests</h1>
+        <div class="interests-list">
+            <div class="interest-item">
+                <i class="fa-solid fa-music"></i>
+                <h3>Music & Singing</h3>
+                <p>I have a passion for music and love to sing. Music is my way of expressing creativity and emotions, and it helps me stay inspired in both my personal and professional life.</p>
+            </div>
+            <div class="interest-item">
+                <i class="fa-solid fa-tv"></i>
+                <h3>Watching Anime</h3>
+                <p>I enjoy watching anime as it combines great storytelling with amazing visual artistry. It's a great way to unwind and explore different cultures and perspectives.</p>
+            </div>
+            <div class="interest-item">
+                <i class="fa-solid fa-bicycle"></i>
+                <h3>Bike Riding</h3>
+                <p>Cycling is one of my favorite activities for staying active and exploring new places. It's a perfect way to clear my mind and maintain a healthy lifestyle.</p>
+            </div>
+            <div class="interest-item">
+                <i class="fa-solid fa-tree"></i>
+                <h3>Nature Walks</h3>
+                <p>I love spending time in nature, taking peaceful walks, and appreciating the beauty of the outdoors. It helps me reconnect with myself and find inspiration.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="myProjects">
+    <div class="container">
+        <h1 class="sub-title">My Projects</h1>
+        <div class="projects-content">
+            <div class="projects-description">
+                <p>Explore my coding journey through various projects that showcase my skills in web development, mobile app development, and software engineering. Each project represents a unique challenge and learning experience.</p>
+            </div>
+            <div class="github-section">
+                <div class="github-card">
+                    <i class="fa-brands fa-github"></i>
+                    <h3>View My GitHub Repositories</h3>
+                    <p>Check out my complete collection of projects, open-source contributions, and code samples on GitHub. From web applications to mobile apps, you'll find diverse projects that demonstrate my technical abilities.</p>
+                    <a href="https://github.com/jbkelli" target="_blank" class="github-btn">
+                        <i class="fa-brands fa-github"></i>
+                        Visit My GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer id="contact">
     <div class="container">
         <div class="row">
             <div class="contact-left">
                 <h1 class="sub-title">Contact Me</h1>
-                <p><i class="fa-solid fa-paper-plane"></i> 444mwangialvinm@gmail.com</p>
-                <p><i class="fa-solid fa-phone"></i> +254797237149</p>
+                <p><i class="fa-solid fa-paper-plane"></i> <a href="mailto:444mwangialvinm@gmail.com">444mwangialvinm@gmail.com</a></p>
+                <p><i class="fa-solid fa-phone"></i> <a href="tel:+254797237149">+254797237149</a></p>
                 <div class="social-icons">
-                    <a href="https://www.instagram.com"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.whatsapp.com"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://instagram.com/vin_grinch" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://wa.me/254797237149?text=Hi%20Alvin!%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect." target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
                     <a href="https://mail.google.com/#compose"><i class="fa-solid fa-envelope"></i></a>
-                    <a href="https://www.linkedin.com"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://www.linkedin.com/in/alvin-maina-280837368/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
                 </div>
             </div>
             <div class="contact-right">
-                <form name="submit-to-google-sheet">
-                    <input type="text" name="Name" placeholder="Your name" required>
-                    <input type="email" name="Email" placeholder="Your Email" required>
-                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
-                    <button type="submit">Submit</button>
+                <form id="contact-form">
+                    <input type="text" name="from_name" placeholder="Your name" required>
+                    <input type="email" name="from_email" placeholder="Your Email" required>
+                    <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+                    <button type="submit">Send Message</button>
                 </form>
                 <span id="msg"></span>
             </div>
@@ -117,7 +185,9 @@
     <div class="copyright">
         <p>Copyright ©Alvin</p>
     </div>
-</div>
+</footer>
+<canvas id="matrixCanvas"></canvas>
+
 <script>
 
     var tablinks = document.getElementsByClassName("tab-links");
@@ -151,23 +221,129 @@
 </script>
 
 <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbylHL72UJkXtvT6RC7W0RecSCYf_x8rpZJMlu342ejnJq9IW9O6bFHSKH72dBnmShg3/exec'
-    const form = document.forms['submit-to-google-sheet']
-    const msg = document.getElementById("msg")
-  
-    form.addEventListener('submit', e => {
-      e.preventDefault()
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => {
-            msg.innerHTML = "Message sent successfully"
-            setTimeout(function(){
-                msg.innerHTML = ""
-            },5000)
-            form.reset()
-        })
-        .catch(error => console.error('Error!', error.message))
-    })
-    </script>
+    // Initialize EmailJS with your public key
+    (function() {
+        emailjs.init("GUKwuORANwROFrNHj"); // Replace with your actual public key
+    })();
+
+    // Handle form submission
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const msgElement = document.getElementById('msg');
+        
+        // Change button text to show loading
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        
+        // Get form data
+        const formData = new FormData(this);
+        
+        // Template parameters for EmailJS
+        const templateParams = {
+            from_name: formData.get('from_name'),
+            from_email: formData.get('from_email'),
+            message: formData.get('message'),
+            to_name: 'Alvin',
+            to_email: '444mwangialvinm@gmail.com'
+        };
+        
+        // Send email using EmailJS
+        emailjs.send('service_9azunie', 'template_9052y38', templateParams)
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+                msgElement.innerHTML = "✅ Message sent successfully!";
+                msgElement.style.color = "#61b752";
+                document.getElementById('contact-form').reset();
+                
+                setTimeout(function() {
+                    msgElement.innerHTML = "";
+                }, 5000);
+            })
+            .catch(function(error) {
+                console.log('FAILED...', error);
+                msgElement.innerHTML = "❌ Failed to send message. Please try again or contact directly.";
+                msgElement.style.color = "#ff004f";
+                
+                // Fallback to mailto after 2 seconds
+                setTimeout(function() {
+                    fallbackToMailto(templateParams);
+                }, 2000);
+            })
+            .finally(function() {
+                submitBtn.textContent = 'Send Message';
+                submitBtn.disabled = false;
+            });
+    });
+    
+    function fallbackToMailto(params) {
+        const subject = encodeURIComponent(`Portfolio Contact from ${params.from_name}`);
+        const body = encodeURIComponent(`Name: ${params.from_name}\nEmail: ${params.from_email}\n\nMessage:\n${params.message}`);
+        const mailtoLink = `mailto:444mwangialvinm@gmail.com?subject=${subject}&body=${body}`;
+        
+        window.open(mailtoLink, '_blank');
+        
+        document.getElementById('msg').innerHTML = "📧 Opening your email client as backup...";
+        document.getElementById('msg').style.color = "#05c6bf";
+        
+        setTimeout(function() {
+            document.getElementById('msg').innerHTML = "";
+        }, 3000);
+    }
+</script>
+  <script>
+  const canvas = document.getElementById('matrixCanvas');
+  const ctx = canvas.getContext('2d');
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const letters = 'アァイィウヴエェオカガキギクグケゲコゴサザシジスズセゼソゾタダチッヂヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモヤユヨラリルレロワヲンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  const fontSize = 16;
+  const columns = canvas.width / fontSize;
+  const drops = Array(Math.floor(columns)).fill(1);
+
+  function drawMatrix() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = '#0F0';
+    ctx.font = `${fontSize}px monospace`;
+
+    for (let i = 0; i < drops.length; i++) {
+      const text = letters.charAt(Math.floor(Math.random() * letters.length));
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+
+      drops[i]++;
+    }
+  }
+
+  setInterval(drawMatrix, 50);
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script>
+
+<!-- Loading Screen Script -->
+<script>
+  window.addEventListener('load', function() {
+    const loading = document.getElementById('loading');
+    setTimeout(() => {
+      loading.classList.add('hidden');
+      setTimeout(() => {
+        loading.style.display = 'none';
+      }, 500);
+    }, 1000);
+  });
+</script>
+
 
 </body>
 </html>
