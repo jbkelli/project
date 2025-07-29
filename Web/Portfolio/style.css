@@ -123,7 +123,7 @@ nav ul li a:hover::after{
 }
 #about{
     padding: 8px 0;
-    color: aqua;
+    color: rgb(255, 255, 255);
 
 }
 .row{
@@ -140,6 +140,8 @@ nav ul li a:hover::after{
     width: 85%;
     height: 100%;
     border-radius: 15px;
+    z-index: -1;
+    background: #000000;
 }
 .about-col-2{
     flex-basis: 60%;
@@ -147,7 +149,7 @@ nav ul li a:hover::after{
 .sub-title{
     font-size: 60px;
     font-weight: 600;
-    color: aqua;
+    color: rgb(255, 255, 255);
 }
 .tab-titles{
     display: flex;
@@ -189,7 +191,7 @@ nav ul li a:hover::after{
     display: block;
 }
 #services{
-    color: rgba(14, 215, 108, 0.548);
+    color: rgb(255, 255, 255);
     padding: 30px 0;
 }
 .services-list{
@@ -212,7 +214,7 @@ nav ul li a:hover::after{
 .services-list div i{
     font-size: 50px;
     margin-bottom: 20px;
-    color: #05c6bf;
+    color: #ffffff;
 }
 .services-list div h2{
     font-size: 24px;
@@ -231,7 +233,7 @@ nav ul li a:hover::after{
 
 /* Interests Section Styles */
 #interests{
-    color: rgba(14, 215, 108, 0.548);
+    color: rgb(255, 255, 255);
     padding: 30px 0;
 }
 .interests-list{
@@ -273,7 +275,7 @@ nav ul li a:hover::after{
 /* Projects Section Styles */
 #myProjects{
     padding: 30px 0;
-    color: rgba(14, 215, 108, 0.548);
+    color: rgb(255, 255, 255);
 }
 .projects-content{
     margin-top: 50px;
@@ -387,7 +389,7 @@ nav ul li a:hover::after{
 }
 button{
     display: inline-block;
-    background: #ff004f;
+    background: #c55679;
 }
 .contact-right form{
     width: 100%;
@@ -412,7 +414,7 @@ form button{
     transition: transform 0.5s;
 }
 form button:hover{
-    background: aqua;
+    background: rgb(178, 255, 255);
     transform: translateY(-5px);
 }
 .copyright{
@@ -580,6 +582,6 @@ nav .fa-solid{
 }
 #msg{
     color: #61b752;
-    margin-top: -10px;
+    margin-top: -30px;
     display: block;
 }
