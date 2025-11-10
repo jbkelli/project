@@ -1,26 +1,53 @@
+/* ========================================
+   Global Styles and Reset
+   ======================================== */
+
 *{
     margin: 0;
     padding: 0;
-    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif ;
+    font-family: 'Segoe UI', Roboto, 'Courier New', monospace;
     box-sizing: border-box;
 }
+
 html{
     scroll-behavior: smooth;
 }
+
 body{
-    background: #080808;
-    color: #000000;
-    /* overflow: hidden; */
+    background: #0a0a0a;
+    color: #e0e0e0;
+    overflow-x: hidden;
 }
 
-/* Loading Animation */
+/* Custom scrollbar styling for a tech look */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #00ff88, #05c6bf);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #05c6bf, #ff004f);
+}
+
+/* ========================================
+   Loading Screen Animation
+   ======================================== */
+
 .loading {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: #080808;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,49 +60,136 @@ body{
     pointer-events: none;
 }
 
+/* Spinner animation with tech glow effect */
 .spinner {
-    width: 50px;
-    height: 50px;
-    border: 3px solid #333;
-    border-top: 3px solid #05c6bf;
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(5, 198, 191, 0.1);
+    border-top: 4px solid #05c6bf;
+    border-right: 4px solid #00ff88;
     border-radius: 50%;
-    animation: spin 1s linear infinite;
+    animation: spin 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+    box-shadow: 0 0 20px rgba(5, 198, 191, 0.5);
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% { 
+        transform: rotate(0deg);
+        box-shadow: 0 0 20px rgba(5, 198, 191, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(0, 255, 136, 0.7);
+    }
+    100% { 
+        transform: rotate(360deg);
+        box-shadow: 0 0 20px rgba(5, 198, 191, 0.5);
+    }
 }
+
+/* ========================================
+   Header Section
+   ======================================== */
 
 #header{
     width: 100%;
-    height: 70vh;
+    height: 100vh;
     background-size: cover;
     background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
 }
+
+/* Animated tech grid overlay on header background */
+#header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(rgba(5, 198, 191, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(5, 198, 191, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    animation: gridMove 20s linear infinite;
+    z-index: 0;
+}
+
+@keyframes gridMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
 .container{
     padding: 10px 10%;
-
+    position: relative;
+    z-index: 1;
 }
+/* ========================================
+   Matrix Rain Background Effect
+   ======================================== */
+
 #matrixCanvas {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: -1; /* Behind other content */
+    z-index: -1;
     width: 100%;
     height: 100%;
     display: block;
-    background-image: black;
+    background: #0a0a0a;
+    opacity: 0.6;
 }
+
+/* ========================================
+   Navigation Bar
+   ======================================== */
+
 nav{
     display: flex;
     align-items: center;
-    justify-content:space-between;
+    justify-content: space-between;
     flex-wrap: wrap;
+    padding: 15px 10%;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(5, 198, 191, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transition: all 0.3s ease;
 }
-.logo{
-    width: 140px;
 
+nav .container {
+    padding: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Navigation style changes when user scrolls down */
+nav.scrolled {
+    padding: 12px 10%;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    background: rgba(10, 10, 10, 0.98);
+}
+
+/* Logo styling with glow effect */
+.logo{
+    width: 80px;
+    filter: drop-shadow(0 0 10px rgba(5, 198, 191, 0.3));
+    transition: filter 0.3s ease;
+}
+
+.logo:hover {
+    filter: drop-shadow(0 0 20px rgba(5, 198, 191, 0.6));
 }
 nav ul li{
     display: inline-block;
@@ -87,102 +201,214 @@ nav ul li a{
     text-decoration: none;
     font-size: 18px;
     position: relative;
-    transition: background 0.5s, transform 0.5s;
+    transition: all 0.3s ease;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
 }
 nav ul li a:hover{
-    color: #05c6bf;
-    transform: translateY(-10px);
+    color: #00ff88;
+    transform: translateY(-3px);
+    background: rgba(5, 198, 191, 0.1);
 }
 
 nav ul li a::after{
     content: '';
     width: 0;
     height: 3px;
-    background: #ff004f;
+    background: linear-gradient(90deg, #05c6bf, #00ff88);
     position: absolute;
-    left: 0;
-    bottom: -6px;
-    transition: 0.5s;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    transition: 0.3s;
+    border-radius: 2px;
 }
 nav ul li a:hover::after{
-    width: 100%;
+    width: 80%;
 }
 .header-text{
-    margin-top: 10%;
+    margin-top: 0;
     font-size: 30px;
     color: #fff;
+    animation: fadeInUp 1s ease;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
 }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .header-text h1{
-    font-size: 60px;
+    font-size: 70px;
     margin-top: 10px;
     color: #fff;
+    font-weight: 700;
+    text-shadow: 0 0 30px rgba(5, 198, 191, 0.4), 0 0 60px rgba(0, 255, 136, 0.2);
+    line-height: 1.2;
 }
 .header-text span{
-    color: #ff004f;
-
+    color: #00ff88;
+    background: linear-gradient(90deg, #05c6bf, #00ff88, #05c6bf);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+    animation: gradientFlow 3s ease-in-out infinite;
 }
+
+@keyframes gradientFlow {
+    0%, 100% {
+        background-position: 0% center;
+    }
+    50% {
+        background-position: 100% center;
+    }
+}
+
+.header-text p {
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: #05c6bf;
+    margin-top: 20px;
+    font-size: 18px;
+    text-shadow: 0 0 10px rgba(5, 198, 191, 0.5);
+}
+/* ========================================
+   About Section
+   ======================================== */
+
 #about{
-    padding: 8px 0;
+    padding: 80px 0;
     color: rgb(255, 255, 255);
-
+    background: linear-gradient(180deg, #0a0a0a 0%, #0f0f1a 100%);
+    position: relative;
+    z-index: 2;
 }
+
 .row{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-
+    align-items: center;
 }
 .about-col-1{
     flex-basis: 35%;
-
 }
 .about-col-1 img{
     width: 85%;
     height: 100%;
     border-radius: 15px;
-    z-index: -1;
     background: #000000;
+    border: 3px solid rgba(5, 198, 191, 0.3);
+    box-shadow: 0 0 30px rgba(5, 198, 191, 0.2);
+    transition: all 0.3s ease;
 }
+
+.about-col-1 img:hover {
+    transform: scale(1.02);
+    border-color: rgba(0, 255, 136, 0.6);
+    box-shadow: 0 0 50px rgba(0, 255, 136, 0.4);
+}
+
 .about-col-2{
     flex-basis: 60%;
 }
 .sub-title{
     font-size: 60px;
-    font-weight: 600;
+    font-weight: 700;
     color: rgb(255, 255, 255);
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.sub-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #05c6bf, #00ff88);
+    border-radius: 2px;
 }
 .tab-titles{
     display: flex;
-    margin: 20px 0 40px;
-
+    margin: 30px 0 40px;
+    gap: 20px;
 }
 .tab-links{
-    margin-right: 50px;
+    margin-right: 30px;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     position: relative;
+    padding: 10px 20px;
+    background: rgba(5, 198, 191, 0.05);
+    border: 1px solid rgba(5, 198, 191, 0.2);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
 }
+
+.tab-links:hover {
+    background: rgba(5, 198, 191, 0.1);
+    transform: translateY(-2px);
+}
+
 .tab-links::after{
     content: '';
     width: 0;
     height: 3px;
-    background: #ff004f;
+    background: linear-gradient(90deg, #05c6bf, #00ff88);
     position: absolute;
     left: 0;
-    bottom: -8px;
-    transition: 0.5s;
+    bottom: -1px;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+.tab-links.active-link{
+    background: rgba(5, 198, 191, 0.15);
+    border-color: #05c6bf;
+    color: #00ff88;
 }
 .tab-links.active-link::after{
     width: 100%;
 }
 .tab-contents ul li{
     list-style: none;
-    margin: 10px 0;
+    margin: 15px 0;
+    padding: 15px;
+    background: rgba(5, 198, 191, 0.05);
+    border-left: 3px solid #05c6bf;
+    border-radius: 5px;
+    transition: all 0.3s ease;
 }
+
+.tab-contents ul li:hover {
+    background: rgba(5, 198, 191, 0.1);
+    transform: translateX(10px);
+}
+
 .tab-contents ul li span{
-    color:red ;
-    font-size: 14px;
+    color: #00ff88;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 .tab-contents{
     display: none;
@@ -192,97 +418,160 @@ nav ul li a:hover::after{
 }
 #services{
     color: rgb(255, 255, 255);
-    padding: 30px 0;
+    padding: 80px 0;
+    background: linear-gradient(180deg, #0f0f1a 0%, #0a0a0a 100%);
 }
 .services-list{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-gap: 30px;
     margin-top: 50px;
 }
 .services-list div{
-    background:linear-gradient(rgb(3, 52, 55), rgb(22, 18, 19));
+    background: linear-gradient(135deg, rgba(5, 198, 191, 0.08), rgba(0, 255, 136, 0.05));
     font-size: 15px;
     font-weight: 300;
-    border-radius: 8px;
-    padding: 20px 15px;
-    transition: transform 0.5s;
-    min-height: 300px;
+    border-radius: 15px;
+    padding: 30px 25px;
+    transition: all 0.4s ease;
+    min-height: 320px;
     display: flex;
     flex-direction: column;
+    border: 1px solid rgba(5, 198, 191, 0.2);
+    position: relative;
+    overflow: hidden;
 }
+
+.services-list div::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(5, 198, 191, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.services-list div:hover::before {
+    left: 100%;
+}
+
 .services-list div i{
     font-size: 50px;
     margin-bottom: 20px;
-    color: #ffffff;
+    color: #00ff88;
+    filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.5));
 }
 .services-list div h2{
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 15px;
     color: #fff;
+    letter-spacing: 1px;
 }
 .services-list div p{
     flex-grow: 1;
-    line-height: 1.6;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
 }
 .services-list div:hover{
-    background: #2405ad;
+    background: linear-gradient(135deg, rgba(5, 198, 191, 0.15), rgba(0, 255, 136, 0.1));
     transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(5, 198, 191, 0.3);
+    border-color: #00ff88;
 }
 
 /* Interests Section Styles */
 #interests{
     color: rgb(255, 255, 255);
-    padding: 30px 0;
+    padding: 80px 0;
+    background: linear-gradient(180deg, #0a0a0a 0%, #0f0f1a 100%);
 }
 .interests-list{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     grid-gap: 30px;
     margin-top: 50px;
 }
 .interest-item{
-    background: linear-gradient(rgb(3, 52, 55), rgb(22, 18, 19));
-    padding: 30px 20px;
-    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(5, 198, 191, 0.08), rgba(0, 255, 136, 0.05));
+    padding: 35px 25px;
+    border-radius: 15px;
     text-align: center;
-    transition: transform 0.5s, background 0.5s;
-    border: 2px solid transparent;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(5, 198, 191, 0.2);
+    position: relative;
+    overflow: hidden;
 }
+
+.interest-item::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(5, 198, 191, 0.1), transparent);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s, height 0.5s;
+    border-radius: 50%;
+}
+
+.interest-item:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
 .interest-item:hover{
-    background: linear-gradient(rgb(5, 70, 75), rgb(30, 25, 26));
+    background: linear-gradient(135deg, rgba(5, 198, 191, 0.15), rgba(0, 255, 136, 0.1));
     transform: translateY(-8px);
-    border-color: #05c6bf;
+    border-color: #00ff88;
+    box-shadow: 0 10px 30px rgba(5, 198, 191, 0.3);
 }
 .interest-item i{
-    font-size: 40px;
-    color: #05c6bf;
+    font-size: 45px;
+    color: #00ff88;
     margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.5));
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
 }
+
+.interest-item:hover i {
+    transform: scale(1.1) rotate(5deg);
+}
+
 .interest-item h3{
     font-size: 22px;
     color: #fff;
     margin-bottom: 15px;
     font-weight: 600;
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 1;
 }
 .interest-item p{
     font-size: 14px;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+    position: relative;
+    z-index: 1;
 }
 
 /* Projects Section Styles */
 #myProjects{
-    padding: 30px 0;
+    padding: 80px 0;
     color: rgb(255, 255, 255);
+    background: linear-gradient(180deg, #0f0f1a 0%, #0a0a0a 100%);
 }
 .projects-content{
     margin-top: 50px;
 }
 .projects-description{
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 .projects-description p{
     font-size: 18px;
@@ -296,138 +585,290 @@ nav ul li a:hover::after{
     justify-content: center;
 }
 .github-card{
-    background: linear-gradient(135deg, rgb(3, 52, 55), rgb(22, 18, 19));
-    padding: 40px 30px;
-    border-radius: 15px;
+    background: linear-gradient(135deg, rgba(5, 198, 191, 0.1), rgba(0, 255, 136, 0.05));
+    padding: 50px 40px;
+    border-radius: 20px;
     text-align: center;
-    max-width: 500px;
+    max-width: 550px;
     width: 100%;
-    border: 2px solid #05c6bf;
-    transition: transform 0.5s, box-shadow 0.5s;
+    border: 2px solid rgba(5, 198, 191, 0.3);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
 }
+
+.github-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(5, 198, 191, 0.1), transparent);
+    transform: rotate(45deg);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
 .github-card:hover{
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(5, 198, 191, 0.3);
+    box-shadow: 0 20px 50px rgba(0, 255, 136, 0.4);
+    border-color: #00ff88;
 }
 .github-card i{
-    font-size: 60px;
-    color: #05c6bf;
-    margin-bottom: 20px;
+    font-size: 70px;
+    color: #00ff88;
+    margin-bottom: 25px;
+    filter: drop-shadow(0 0 15px rgba(0, 255, 136, 0.5));
+    position: relative;
+    z-index: 1;
 }
 .github-card h3{
     font-size: 28px;
     color: #fff;
     margin-bottom: 20px;
-    font-weight: 600;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
 }
 .github-card p{
     font-size: 16px;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 30px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 35px;
+    position: relative;
+    z-index: 1;
 }
 .github-btn{
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    background: #ff004f;
-    color: white;
-    padding: 15px 30px;
-    border-radius: 25px;
+    gap: 12px;
+    background: linear-gradient(135deg, #05c6bf, #00ff88);
+    color: #0a0a0a;
+    padding: 16px 35px;
+    border-radius: 30px;
     text-decoration: none;
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 700;
     transition: all 0.3s ease;
-    border: 2px solid #ff004f;
+    border: 2px solid transparent;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 5px 20px rgba(5, 198, 191, 0.3);
 }
 .github-btn:hover{
     background: transparent;
-    color: #ff004f;
+    color: #00ff88;
+    border-color: #00ff88;
     transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(0, 255, 136, 0.5);
 }
 .github-btn i{
-    font-size: 20px;
+    font-size: 22px;
+    margin-bottom: 0;
 }
 
 .contact-left{
     flex-basis: 35%;
-    color: #05c6bf;
+    color: #00ff88;
 }
 .contact-right{
     flex-basis: 60%;
 }
 .contact-left p{
     margin-top: 30px;
+    font-size: 16px;
 }
 .contact-left p a{
     color: #05c6bf;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    font-weight: 500;
 }
 .contact-left p a:hover{
-    color: #ff004f;
+    color: #00ff88;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
 }
 .contact-left p i{
-    color: #ff004f;
+    color: #00ff88;
     margin-right: 15px;
     font-size: 25px;
+    filter: drop-shadow(0 0 5px rgba(0, 255, 136, 0.3));
 }
 .social-icons{
-    margin-top: 30px;
+    margin-top: 35px;
 }
 .social-icons a{
     text-decoration: none;
-    font-family: 30px;
-    margin-right: 15px;
-    color: azure;
+    font-size: 30px;
+    margin-right: 20px;
+    color: #05c6bf;
     display: inline-block;
-    transition: transform 0.5s;
+    transition: all 0.3s ease;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 50%;
+    background: rgba(5, 198, 191, 0.1);
+    border: 2px solid rgba(5, 198, 191, 0.3);
 }
 .social-icons a:hover{
-    color: #ff004f;
-    transform: translateY(-5px);
+    color: #00ff88;
+    transform: translateY(-5px) rotate(360deg);
+    background: rgba(0, 255, 136, 0.15);
+    border-color: #00ff88;
+    box-shadow: 0 5px 20px rgba(0, 255, 136, 0.4);
 }
 button{
     display: inline-block;
-    background: #c55679;
+    background: linear-gradient(135deg, #05c6bf, #00ff88);
 }
 .contact-right form{
     width: 100%;
 }
 form input, form textarea{
     width: 100%;
-    border: 0;
+    border: 2px solid rgba(5, 198, 191, 0.3);
     outline: none;
-    background: #262626;
+    background: rgba(5, 198, 191, 0.05);
     padding: 15px;
     margin: 15px 0;
     color: #fff;
-    font-size: 18px;
-    border-radius: 6px;
+    font-size: 16px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-family: 'Segoe UI', Roboto, sans-serif;
 }
+
+form input:focus, form textarea:focus{
+    border-color: #00ff88;
+    background: rgba(5, 198, 191, 0.1);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+}
+
+form input::placeholder, form textarea::placeholder{
+    color: rgba(255, 255, 255, 0.5);
+}
+
 form button{
-    padding: 14px 60px;
+    padding: 16px 60px;
     font-size: 18px;
+    font-weight: 700;
     margin-top: 20px;
     cursor: pointer;
-    border-radius: 10px;
-    transition: transform 0.5s;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    background: linear-gradient(135deg, #05c6bf, #00ff88);
+    color: #0a0a0a;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 20px rgba(5, 198, 191, 0.3);
 }
 form button:hover{
-    background: rgb(178, 255, 255);
-    transform: translateY(-5px);
+    background: transparent;
+    color: #00ff88;
+    border-color: #00ff88;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0, 255, 136, 0.5);
 }
+
+form button:active {
+    transform: translateY(-1px);
+}
+
 .copyright{
     width: 100%;
     text-align: center;
-    padding: 25px 0;
-    background: #262626;
-    font-weight: 300;
-    margin-top: 20px;
+    padding: 30px 0;
+    background: linear-gradient(135deg, #0f0f1a 0%, #161620 50%, #0f0f1a 100%);
+    font-weight: 400;
+    margin-top: 50px;
+    color: rgba(255, 255, 255, 0.8);
+    border-top: 2px solid rgba(5, 198, 191, 0.3);
+    font-size: 14px;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
 }
+
+.copyright::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(5, 198, 191, 0.1), transparent);
+    animation: footerShine 3s infinite;
+}
+
+@keyframes footerShine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.copyright p {
+    position: relative;
+    z-index: 1;
+}
+
 nav .fa-solid{
     display: none;
 }
+
+/* Scroll to Top Button */
+#scrollTopBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #05c6bf, #00ff88);
+    color: #0a0a0a;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(5, 198, 191, 0.4);
+}
+
+#scrollTopBtn:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 30px rgba(0, 255, 136, 0.6);
+}
+
+#scrollTopBtn.show {
+    display: flex;
+    animation: fadeInUp 0.3s ease;
+}
+
+/* Footer Enhancements */
+#contact {
+    background: linear-gradient(180deg, #0a0a0a 0%, #0f0f1a 50%, #161620 100%);
+    padding: 80px 0 0 0;
+    position: relative;
+}
+
+#contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #05c6bf, #00ff88, #05c6bf, transparent);
+}
+
 @media only screen and (max-width: 600px){
     #header{
         background-image: url(picture/peide.png);
@@ -435,27 +876,37 @@ nav .fa-solid{
     }
 
     .header-text {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
         text-align: center;
         width: 100%;
         padding: 0 20px;
     }
     .header-text h1{
-        font-size: 30px;
+        font-size: 40px;
     }
     .header-text p{
         font-size: 14px;
+        letter-spacing: 2px;
     }
+    
+    nav{
+        padding: 12px 5%;
+    }
+    
+    nav.scrolled{
+        padding: 10px 5%;
+    }
+    
+    .logo{
+        width: 60px;
+    }
+    
     nav .fa-solid{
         display: block;
         font-size: 25px;
-        color: aliceblue;
+        color: #00ff88;
     }
     nav ul{
-        background: #ff004f;
+        background: linear-gradient(135deg, rgba(5, 198, 191, 0.95), rgba(0, 255, 136, 0.95));
         position: fixed;
         top: 0;
         right: -200px;
@@ -464,16 +915,22 @@ nav .fa-solid{
         padding-top: 50px;
         z-index: 2;
         transition: right 0.5s;
+        backdrop-filter: blur(10px);
     }
     nav ul li{
         display: block;
         margin: 25px;
+    }
+    nav ul li a{
+        color: #0a0a0a;
+        font-weight: 600;
     }
     nav ul .fa-solid{
         position: absolute;
         top: 25px;
         left: 25px;
         cursor: pointer;
+        color: #0a0a0a;
     }
     .sub-title{
         font-size: 40px;
@@ -492,8 +949,9 @@ nav .fa-solid{
         font-size: 14px;
     }
     .tab-links{
-        font-size: 16px;
-        margin-right: 20px;
+        font-size: 14px;
+        margin-right: 10px;
+        padding: 8px 15px;
     }
     
     /* Services Section Mobile */
@@ -503,7 +961,7 @@ nav .fa-solid{
     }
     .services-list div{
         padding: 25px 20px;
-        min-height: 250px;
+        min-height: 280px;
     }
     .services-list div h2{
         font-size: 20px;
@@ -518,18 +976,18 @@ nav .fa-solid{
         grid-gap: 20px;
     }
     .interest-item{
-        padding: 20px 15px;
+        padding: 25px 20px;
     }
     .interest-item h3{
         font-size: 20px;
     }
     .interest-item p{
-        font-size: 13px;
+        font-size: 14px;
     }
     
     /* Projects Section Mobile */
     .github-card{
-        padding: 30px 20px;
+        padding: 35px 25px;
         margin: 0 20px;
     }
     .github-card h3{
@@ -539,7 +997,7 @@ nav .fa-solid{
         font-size: 14px;
     }
     .github-btn{
-        padding: 12px 20px;
+        padding: 14px 25px;
         font-size: 16px;
     }
     .projects-description p{
@@ -555,16 +1013,28 @@ nav .fa-solid{
         margin-bottom: 30px;
     }
     .social-icons a{
-        margin-right: 20px;
+        margin-right: 15px;
         font-size: 24px;
+        width: 45px;
+        height: 45px;
+        line-height: 45px;
     }
     form input, form textarea{
-        font-size: 16px;
+        font-size: 15px;
         padding: 12px;
     }
     form button{
-        padding: 12px 40px;
+        padding: 14px 40px;
         font-size: 16px;
+    }
+    
+    /* Scroll to Top Mobile */
+    #scrollTopBtn {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 18px;
     }
     
     /* General Mobile Improvements */
@@ -572,16 +1042,35 @@ nav .fa-solid{
         padding: 10px 5%;
     }
     .copyright{
-        font-size: 14px;
+        font-size: 13px;
+        padding: 20px 10px;
     }
     
-    /* Matrix Canvas Mobile */
-    #matrixCanvas{
-        opacity: 0.3;
+    /* Sections padding Mobile */
+    #about, #services, #interests, #myProjects, #contact {
+        padding: 50px 0;
     }
 }
 #msg{
-    color: #61b752;
-    margin-top: -30px;
+    color: #00ff88;
+    margin-top: 20px;
     display: block;
+    font-weight: 600;
+    padding: 12px 15px;
+    border-radius: 8px;
+    background: rgba(0, 255, 136, 0.1);
+    text-align: center;
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

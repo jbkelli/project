@@ -19,27 +19,35 @@
 
 </head>
 <body>
+<!-- Scroll to Top Button -->
+<button id="scrollTopBtn" title="Go to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
 <!-- Loading Screen -->
 <div class="loading" id="loading">
     <div class="spinner"></div>
 </div>
 
+<nav>
+    <div class="container">
+        <img src="picture/JB.png" class="logo" alt="Alvin Maina Logo">
+        
+        <ul id="sidemenu">
+            <li><a href="#header" onclick="closemenu()">HOME</a></li>
+            <li><a href="#about" onclick="closemenu()">ABOUT</a></li>
+            <li><a href="#services" onclick="closemenu()">SERVICES</a></li>
+            <li><a href="#interests" onclick="closemenu()">INTERESTS</a></li>
+            <li><a href="#myProjects" onclick="closemenu()">PROJECTS</a></li>
+            <li><a href="#contact" onclick="closemenu()">CONTACTS</a></li>
+            <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
+        </ul> 
+        <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+    </div>
+</nav>
+
 <header id="header">
     <div class="container">
-        <nav>
-            <img src="picture/JB.png" class="logo" alt="Alvin Maina Logo">
-            
-            <ul id="sidemenu">
-                <li><a href="#header" onclick="closemenu()">HOME</a></li>
-                <li><a href="#about" onclick="closemenu()">ABOUT</a></li>
-                <li><a href="#services" onclick="closemenu()">SERVICES</a></li>
-                <li><a href="#interests" onclick="closemenu()">INTERESTS</a></li>
-                <li><a href="#myProjects" onclick="closemenu()">PROJECTS</a></li>
-                <li><a href="#contact" onclick="closemenu()">CONTACTS</a></li>
-                <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
-            </ul> 
-            <i class="fa-solid fa-bars" onclick="openmenu()"></i>
-        </nav>
         <section class="header-text">
             <h1>Hi, I'm <span>Alvin</span><br>From Kenya</h1>
             <p>WEB DEVELOPER, MOBILE DEVELOPER</p>
@@ -78,7 +86,7 @@
                 </div>
             </div>
             <div class="about-col-1">
-                <img src="picture/profile.png" width="450" height="100" alt="Alvin Maina Profile Picture">
+                <img src="picture/mypic.png" width="450" height="100" alt="Alvin Maina Profile Picture">
             </div>
         </div>
     </div>
@@ -186,22 +194,30 @@
         </div>
     </div>
     <div class="copyright">
-        <p>Copyright ©Alvin</p>
+        <p>Copyright © Alvin 2025 | Built with passion and code ✨</p>
     </div>
 </footer>
 <canvas id="matrixCanvas"></canvas>
 
 <script>
+    // ========================================
+    // Tab Switching Functionality
+    // ========================================
+    // This allows users to switch between Skills and Education tabs
 
     var tablinks = document.getElementsByClassName("tab-links");
     var tabcontents = document.getElementsByClassName("tab-contents");
+    
     function opentab(tabname){
+        // Remove active class from all tabs and tab content
         for(tablink of tablinks){
             tablink.classList.remove("active-link");
         }
         for(tabcontent of tabcontents){
             tabcontent.classList.remove("active-tab");
         }
+        
+        // Add active class to the clicked tab and corresponding content
         event.currentTarget.classList.add("active-link");
         document.getElementById(tabname).classList.add("active-tab");
     }
@@ -209,24 +225,70 @@
 </script>
 
 <script>
+    // ========================================
+    // Scroll to Top Button & Navbar Effects
+    // ========================================
+    
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    
+    // Show scroll-to-top button when user scrolls down
+    // Also add style to navbar when scrolling
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            scrollTopBtn.classList.add('show');
+        } else {
+            scrollTopBtn.classList.remove('show');
+        }
+        
+        // Change navbar appearance when scrolling down
+        const nav = document.querySelector('nav');
+        if (window.pageYOffset > 100) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    });
+    
+    // Smooth scroll to top when button is clicked
+    scrollTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+</script>
 
+<script>
+    // ========================================
+    // Mobile Menu Toggle
+    // ========================================
+    
     var sidemenu = document.getElementById("sidemenu");
 
+    // Open the mobile navigation menu
     function openmenu(){
         sidemenu.style.right = "0";
     }
+    
+    // Close the mobile navigation menu
     function closemenu(){
         sidemenu.style.right = "-200px";
     }
+    
+    // Automatically close menu when a link is clicked
     document.querySelectorAll("#sidemenu a").forEach(item => {
         item.addEventListener("click", closemenu);
     });
 </script>
 
 <script>
+    // ========================================
+    // EmailJS Contact Form Setup
+    // ========================================
+    
     // Initialize EmailJS with your public key
     (function() {
-        emailjs.init("GUKwuORANwROFrNHj"); // Replace with your actual public key
+        emailjs.init("GUKwuORANwROFrNHj");
     })();
 
     // Handle form submission
@@ -236,14 +298,14 @@
         const submitBtn = this.querySelector('button[type="submit"]');
         const msgElement = document.getElementById('msg');
         
-        // Change button text to show loading
+        // Show loading state on button
         submitBtn.textContent = 'Sending...';
         submitBtn.disabled = true;
         
         // Get form data
         const formData = new FormData(this);
         
-        // Template parameters for EmailJS
+        // Prepare email parameters
         const templateParams = {
             from_name: formData.get('from_name'),
             from_email: formData.get('from_email'),
@@ -257,9 +319,10 @@
             .then(function(response) {
                 console.log('SUCCESS!', response.status, response.text);
                 msgElement.innerHTML = "✅ Message sent successfully!";
-                msgElement.style.color = "#61b752";
+                msgElement.style.color = "#00ff88";
                 document.getElementById('contact-form').reset();
                 
+                // Clear success message after 5 seconds
                 setTimeout(function() {
                     msgElement.innerHTML = "";
                 }, 5000);
@@ -275,11 +338,13 @@
                 }, 2000);
             })
             .finally(function() {
+                // Reset button state
                 submitBtn.textContent = 'Send Message';
                 submitBtn.disabled = false;
             });
     });
     
+    // Fallback function to open default email client
     function fallbackToMailto(params) {
         const subject = encodeURIComponent(`Portfolio Contact from ${params.from_name}`);
         const body = encodeURIComponent(`Name: ${params.from_name}\nEmail: ${params.from_email}\n\nMessage:\n${params.message}`);
@@ -296,29 +361,60 @@
     }
 </script>
   <script>
+  // ========================================
+  // Matrix Rain Background Effect
+  // ========================================
+  // Creates the falling characters background with blue-green gradient
+  
   const canvas = document.getElementById('matrixCanvas');
   const ctx = canvas.getContext('2d');
 
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  // Set canvas size to match window dimensions
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  
+  resizeCanvas();
 
+  // Characters to display in the matrix rain (Japanese katakana + alphanumeric)
   const letters = 'アァイィウヴエェオカガキギクグケゲコゴサザシジスズセゼソゾタダチッヂヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモヤユヨラリルレロワヲンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
   const fontSize = 16;
-  const columns = canvas.width / fontSize;
-  const drops = Array(Math.floor(columns)).fill(1);
+  let columns = Math.floor(canvas.width / fontSize);
+  let drops = Array(columns).fill(1);
 
+  // Main animation function
   function drawMatrix() {
+    // Create fade effect by drawing semi-transparent black rectangle
     ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = '#0F0';
     ctx.font = `${fontSize}px monospace`;
 
+    // Draw each column of characters
     for (let i = 0; i < drops.length; i++) {
       const text = letters.charAt(Math.floor(Math.random() * letters.length));
-      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+      
+      // Create blue-to-green gradient for each character
+      const yPos = drops[i] * fontSize;
+      const gradient = ctx.createLinearGradient(
+        0, 
+        yPos - fontSize * 3, 
+        0, 
+        yPos
+      );
+      
+      // Smooth gradient from blue through cyan to green
+      gradient.addColorStop(0, 'rgba(0, 212, 255, 0.3)');   // Blue (faded)
+      gradient.addColorStop(0.3, 'rgba(5, 198, 191, 0.7)'); // Cyan
+      gradient.addColorStop(0.7, 'rgba(0, 255, 136, 0.9)'); // Green
+      gradient.addColorStop(1, 'rgba(0, 255, 136, 1)');     // Bright green
+      
+      ctx.fillStyle = gradient;
+      ctx.fillText(text, i * fontSize, yPos);
 
-      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+      // Reset drop to top randomly after reaching bottom
+      if (yPos > canvas.height && Math.random() > 0.975) {
         drops[i] = 0;
       }
 
@@ -326,20 +422,32 @@
     }
   }
 
+  // Run animation at 50ms intervals (20 fps)
   setInterval(drawMatrix, 50);
 
+  // Handle window resize to keep matrix rain working on all screen sizes
   window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    resizeCanvas();
+    columns = Math.floor(canvas.width / fontSize);
+    drops = Array(columns).fill(1);
   });
 </script>
 
 <!-- Loading Screen Script -->
 <script>
+  // ========================================
+  // Loading Screen Controller
+  // ========================================
+  // Hides the loading animation once page is fully loaded
+  
   window.addEventListener('load', function() {
     const loading = document.getElementById('loading');
+    
+    // Wait 1 second then start fade out
     setTimeout(() => {
       loading.classList.add('hidden');
+      
+      // Remove from DOM after fade animation completes
       setTimeout(() => {
         loading.style.display = 'none';
       }, 500);
